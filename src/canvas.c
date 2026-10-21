@@ -1,3 +1,4 @@
+#include "tiles.h"
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -34,10 +35,33 @@ void destroy_canvas() {
     }
 }
 
+char print_tile(int tileId) {
+    switch(tileId) {
+        case TILE_BLANK:
+            return ' ';
+        case TILE_LEFT_RIGHT:
+            return '-';
+        case TILE_UP_DOWN:
+            return '|';
+        case TILE_UP_LEFT:
+            return 'J';
+        case TILE_UP_RIGHT:
+            return 'L';
+        case TILE_DOWN_LEFT:
+            return '¬';
+        case TILE_DOWN_RIGHT:
+            return 'r';
+        case TILE_CROSS:
+            return '+';
+        default:
+            return '!'; /*ERROR*/
+    }
+}
+
 void print_position(int xOffset, int yOffset) {
     int offset = (yOffset * width) + width;
     int contents = *(canvas+offset);
-    printf("%d ", contents);
+    printf("%c ", print_tile(contents));
 }
 
 void print_canvas() {
